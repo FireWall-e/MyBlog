@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { Router } from "@angular/router";
-
 import { AngularFireAuth } from "@angular/fire/auth";
 import { DatabaseService } from "../../services/database/database.service";
-
 import { PostInterface } from "../../interfaces/post/post.interface";
 
 @Component({
@@ -23,7 +21,6 @@ export class PostComponent implements OnInit {
   private postTitleElement: HTMLInputElement;
   private postNoteElement: HTMLTextAreaElement;
   private postReference;
-  // private postSubscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,10 +34,7 @@ export class PostComponent implements OnInit {
       const userReference = this.db.createReference(`users/${user.email}`);
       this.db.getValue(userReference, 'isAdmin')
       .then((isAdmin: number) => {
-        // .then((user: object) => {
         this.isAdmin = isAdmin;
-        // this.retrievePosts();
-        // console.log('this.userAuth is ',user);
       }).catch((error) => {
         window.alert(error.message)
       });
@@ -48,23 +42,18 @@ export class PostComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    console.log('id is ', this.route.snapshot.queryParamMap.get('id'));
-    console.log('this post is ', this.post);
     this.postTitleElement = document.querySelector('.inputs-title');
     this.postNoteElement = document.querySelector('.inputs-note');
     this.post.id = this.route.snapshot.queryParamMap.get('id');
     this.postReference = this.db.createReference(`posts/${this.post.id}`);
     const postSubscription = this.postReference.get().subscribe(postSnapshot => {
       const postData = postSnapshot.data();
-      // if (this.post.title === undefined) { 
       if (postData) {
         document.querySelector('.post').classList.remove('loading');
         this.post.title = postData.title;
         this.post.note = postData.note;
       }
-      // }
       postSubscription.unsubscribe();
-      console.log('me ',this.post, 'postData ', postData);
     });
   }
 
@@ -98,6 +87,5 @@ export class PostComponent implements OnInit {
     this.fireAuth.auth.signOut().then(() => {
       this.router.navigate(['/login']);
     });
-    // });
   }
 }

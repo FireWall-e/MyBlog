@@ -1,7 +1,3 @@
-// input {
-//     border: none;
-// }
-
 .main {
     background: rgb(131,58,180);
     background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(205,50,87,1) 50%, rgba(252,176,69,1) 100%);
@@ -28,7 +24,6 @@
             min-height: 200px;
             margin: 20px;
             border: 1px solid whitesmoke;
-            // border-radius: 10px;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -72,8 +67,6 @@
     }
     .button-lazy-load {
         border: none;
-        // border-top: 1px solid whitesmoke;
-        // min-height: 60px;
         margin: auto;
         width: 50%;
         &:hover {

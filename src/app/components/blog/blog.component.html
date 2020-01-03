@@ -3,39 +3,6 @@
         <button *ngIf="isAdmin" type="button" class="head-bar__button button-add-post" (click)="addPost()">Добавить пост</button>
         <button type="button" class="head-bar__button button-exit" (click)="logout()">Выйти</button>
     </div>
-    <div class="posts">
-        <!-- [innerHtml]="htmlToAdd" -->
-        <!-- <div class="post">
-            <div class="inputs">
-                <input type="text" class="inputs__item inputs-title" placeholder="Название записи..." disabled>
-                <textarea class="inputs__item inputs-note" placeholder="Содержимое записи..." disabled></textarea>
-            </div>
-            <div class="edit">
-                <button class="edit__item button-edit-post" data-post-id="d7epOyCaynMwTWe6Xv7rvp" (click)="navigate()" #viewPost>Перейти к записи</button>
-                <button *ngIf="isAdmin" class="edit__item button-delete-post" data-post-id="d7epOyCaynMwTWe6Xv7rvp">Удалить</button>
-            </div>
-        </div> -->
-        <!-- <div class="post">
-            <div class="inputs">
-                <input type="text" class="inputs__item inputs-title" placeholder="Название записи...">
-                <textarea class="inputs__item inputs-note" placeholder="Содержимое записи..."></textarea>
-            </div>
-            <div class="edit">
-                <button class="edit__item button-edit-post" data-post-id="wdawdwadadawd" [routerLink]="['/post']" [queryParams]="{id: viewPost.dataset.postId}" #viewPost>Перейти к записи</button>
-                <button class="edit__item button-delete-post" data-post-id="wdawdwadadawd">Удалить</button>
-            </div>
-        </div> -->
-        <!-- <div class="post">
-            <div class="inputs">
-                <input type="text" class="inputs__item inputs-title" placeholder="Название записи...">
-                <textarea class="inputs__item inputs-note" placeholder="Содержимое записи..."></textarea>
-            </div>
-            <div class="edit">
-                <button class="edit__item button-edit-post">Просмотреть</button>
-                <button class="edit__item button-delete-post">Удалить</button>
-            </div>
-        </div>
-        <div class="post"></div> -->
-    </div>
+    <div class="posts"></div>
     <button type="button" class="button-lazy-load" (click)="retrievePosts('lazyLoad')">Показать предыдущие...</button>
 </main>
