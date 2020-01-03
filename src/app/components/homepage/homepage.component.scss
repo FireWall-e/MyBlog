@@ -1,0 +1,51 @@
+.main {
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,121,119,1) 50%, rgba(0,212,255,1) 100%);
+}
+
+.app-name {
+    flex: 1;
+    font-size: 120px;
+    font-family: Garamond;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.block {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.buttons {
+    // height: 50px;
+    // flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.button {
+    margin-right: 20px;
+    width: 130px;
+}
+
+.button-login {
+    border-color: orange;
+}
+
+.button-register {
+    border-color: yellowgreen;
+}
+
+.pluma {
+    flex: 1;
+    background-image: url(https://i.dlpng.com/static/png/5447082-pluma-png-99-images-in-collection-page-2-pluma-png-512_512_preview.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: invert(1);
+    margin-top: 50px;
+    opacity: 0.8;
+}

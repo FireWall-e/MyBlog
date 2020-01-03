@@ -1,0 +1,18 @@
+<main class="main">
+    <div class="head-bar">
+        <button type="button" class="head-bar__button button-blog" routerLink="/blog">Назад</button>
+        <button type="button" class="head-bar__button button-exit" (click)="logout()">Выйти</button>
+    </div>
+    <div class="post loading">
+        <div class="post__item inputs">
+            <input type="text" class="inputs__item inputs-title" value="{{post.title}}" placeholder="Название записи..." [disabled]="!isAdmin">
+            <textarea class="inputs__item inputs-note" placeholder="Содержимое записи..." [disabled]="!isAdmin">{{post.note}}</textarea>
+        </div>
+        <div *ngIf="isAdmin" class="post__item buttons-manage-post">
+            <button type="button" class="buttons-manage-post__item button-save" (click)="saveChanges()">Сохранить</button>
+            <button type="button" class="buttons-manage-post__item button-discard" (click)="discardChanges()">Отменить</button>
+            <button type="button" class="buttons-manage-post__item button-delete" (click)="deletePost()">Удалить</button>
+        </div>
+        <div class="post-overlay"></div>
+    </div>
+</main>

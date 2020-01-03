@@ -1,1 +1,64 @@
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    text-align: center;
+    color: whitesmoke;
+    font-family: monospace;
+    font-size: 18px;
+}
+
+main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid whitesmoke;
+    text-align: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    caret-color: whitesmoke;
+    color: inherit;
+}
+
+textarea {
+    background: transparent;
+    border: none;
+    border-top: 1px solid whitesmoke;
+    color: inherit;
+    font-size: inherit;
+    resize: none;
+    padding: 10px;
+}
+
+button {
+    border: none;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    color: inherit;
+    height: 40px;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+::placeholder {
+    color: whitesmoke;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(245, 245, 245, 0.5);
+    -webkit-border-radius: 10px;
+}
