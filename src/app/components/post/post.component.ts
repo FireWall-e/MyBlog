@@ -31,13 +31,15 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
     this.$authStateChange = this.fireAuth.authState.subscribe(user => {
-      const userReference = this.db.createReference(`users/${user.email}`);
-      this.db.getValue(userReference, 'isAdmin')
-      .then((isAdmin: number) => {
-        this.isAdmin = isAdmin;
-      }).catch((error) => {
-        window.alert(error.message)
-      });
+      if (user) {
+        const userReference = this.db.createReference(`users/${user.email}`);
+        this.db.getValue(userReference, 'isAdmin')
+        .then((isAdmin: number) => {
+          this.isAdmin = isAdmin;
+        }).catch((error) => {
+          window.alert(error.message);
+        });
+      }
     });
   }
 

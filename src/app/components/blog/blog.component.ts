@@ -29,14 +29,14 @@ export class BlogComponent implements OnInit {
   ngAfterViewInit() {
     this.postsContainer = document.querySelector('.posts');
     this.$authStateChange = this.fireAuth.authState.subscribe(user => {
-      if (user.email) {
+      if (user) {
         const userReference = this.db.createReference(`users/${user.email}`);
         this.db.getValue(userReference, 'isAdmin')
         .then((isAdmin: number) => {
           this.isAdmin = isAdmin;
           this.retrievePosts();
         }).catch((error) => {
-          window.alert(error.message)
+          window.alert(error.message);
         });
       }
     });
