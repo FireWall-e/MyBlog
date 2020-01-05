@@ -11,7 +11,7 @@ import { PostInterface } from "../../interfaces/post/post.interface";
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
-  private authStateChange;
+  private $authStateChange;
   private isAdmin: number;
   private post: PostInterface = {
     id: undefined,
@@ -30,7 +30,7 @@ export class PostComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authStateChange = this.fireAuth.authState.subscribe(user => {
+    this.$authStateChange = this.fireAuth.authState.subscribe(user => {
       const userReference = this.db.createReference(`users/${user.email}`);
       this.db.getValue(userReference, 'isAdmin')
       .then((isAdmin: number) => {
@@ -46,14 +46,14 @@ export class PostComponent implements OnInit {
     this.postNoteElement = document.querySelector('.inputs-note');
     this.post.id = this.route.snapshot.queryParamMap.get('id');
     this.postReference = this.db.createReference(`posts/${this.post.id}`);
-    const postSubscription = this.postReference.get().subscribe(postSnapshot => {
+    const $postSubscription = this.postReference.get().subscribe(postSnapshot => {
       const postData = postSnapshot.data();
       if (postData) {
         document.querySelector('.post').classList.remove('loading');
         this.post.title = postData.title;
         this.post.note = postData.note;
       }
-      postSubscription.unsubscribe();
+      $postSubscription.unsubscribe();
     });
   }
 
@@ -75,15 +75,20 @@ export class PostComponent implements OnInit {
   deletePost() {
     document.querySelector('.post').classList.add('loading');
     this.postReference.delete()
-    .then(_ => { 
-      document.querySelector('.post').classList.remove('loading'); 
-      this.router.navigate(['/blog']);
+    .then(() => { 
+        document.querySelector('.post').classList.remove('loading');
+        this.router.navigate(['/blog']).then(()=>{
+          const interval = setInterval(() => {
+            const postElement = document.querySelector('[data-post-id="' + this.post.id + '"]');
+            if (postElement) (postElement.remove(), clearInterval(interval));
+          }, 150);
+        });
     })
     .catch(error => window.alert('Post delete error ' + error));
   }
 
   logout() {
-    this.authStateChange.unsubscribe();
+    this.$authStateChange.unsubscribe();
     this.fireAuth.auth.signOut().then(() => {
       this.router.navigate(['/login']);
     });

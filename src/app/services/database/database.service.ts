@@ -21,8 +21,6 @@ export class DatabaseService {
   getValue(reference, key = '') {
     return new Promise((resolve, reject) => {
       reference.valueChanges().subscribe(data => {
-        console.log('key is ', key, data, data[key])
-        console.log('query bool ', key && (data || {})[key]);
         resolve(key && key in (data || {}) ? data[key] : data);
       });
     });

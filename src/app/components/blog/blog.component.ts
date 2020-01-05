@@ -105,7 +105,6 @@ export class BlogComponent implements OnInit {
     .delete()
     .then(_ => document.querySelector('[data-post-id="' + postId + '"]').remove())
     .catch(error => window.alert('Document delete error' + error));
-    
   }
 
   retrievePosts(lazyLoad = false) {
